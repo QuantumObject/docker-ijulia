@@ -43,8 +43,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-
                     libffi-dev \
                     libssl-dev \
                     libzmq3-dev \
-                    libsundials-cvodes2 \
-                    libsundials-ida2 \
+                    libsundials-cvodes3 \
+                    libsundials-ida3 \
                     libnlopt-dev \
                     openmpi-bin \
                     libopenmpi-dev \
