@@ -5,7 +5,7 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 # Update the container
 # Installation of nesesary package/software for this containers...
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends apt-utils \
+RUN curl -sL https://deb.nodesource.com/setup_15.x |  bash  && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends apt-utils \
                     git \
                     bzip2 \
                     unzip \
