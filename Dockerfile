@@ -1,11 +1,11 @@
 #name of container: docker-ijulia-notebook
-#versison of container: 0.6.3
-FROM quantumobject/docker-baseimage:18.04
+#versison of container: 0.7
+FROM quantumobject/docker-baseimage:20.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 # Update the container
 # Installation of nesesary package/software for this containers...
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends apt-utils \
+RUN curl -sL https://deb.nodesource.com/setup_15.x |  bash  && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends apt-utils \
                     git \
                     bzip2 \
                     unzip \
@@ -43,28 +43,25 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-
                     libffi-dev \
                     libssl-dev \
                     libzmq3-dev \
-                    libsundials-cvodes2 \
-                    libsundials-ida2 \
+                    libsundials-cvodes3 \
+                    libsundials-ida3 \
                     libnlopt-dev \
                     openmpi-bin \
                     libopenmpi-dev \
                     libblosc-dev \
                     ffmpeg  tzdata\
                     libgmp-dev libglpk-dev \
-                    libmumps-dev \
-                    && apt-get clean \
-                    && rm -rf /tmp/* /var/tmp/*  \
-                    && rm -rf /var/lib/apt/lists/*
+                    libmumps-dev nodejs
 
 # Julia dependencies
 # install Julia packages in /opt/julia instead of $HOME
 ENV JULIA_PKGDIR=/opt/julia
-ENV JULIA_VERSION=1.4.0
+ENV JULIA_VERSION=1.6.0
 
 RUN mkdir /opt/julia-${JULIA_VERSION} && \
     cd /tmp && \
     wget -q https://julialang-s3.julialang.org/bin/linux/x64/`echo ${JULIA_VERSION} | cut -d. -f 1,2`/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
-    echo "30d126dc3598f3cd0942de21cc38493658037ccc40eb0882b3b4c418770ca751 *julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | sha256sum -c - && \
+    echo "463b71dc70ca7094c0e0fd6d55d130051a7901e8dec5eb44d6002c57d1bd8585 *julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | sha256sum -c - && \
     tar xzf julia-${JULIA_VERSION}-linux-x86_64.tar.gz -C /opt/julia-${JULIA_VERSION} --strip-components=1 && \
     rm /tmp/julia-${JULIA_VERSION}-linux-x86_64.tar.gz
 RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
