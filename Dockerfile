@@ -51,7 +51,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-
                     libblosc-dev \
                     ffmpeg  tzdata\
                     libgmp-dev libglpk-dev \
-                    libmumps-dev 
+                    libmumps-dev nodejs npm
 
 # Julia dependencies
 # install Julia packages in /opt/julia instead of $HOME
