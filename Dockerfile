@@ -51,7 +51,7 @@ RUN curl -sL https://deb.nodesource.com/setup_15.x |  bash  && DEBIAN_FRONTEND=n
                     libblosc-dev \
                     ffmpeg  tzdata\
                     libgmp-dev libglpk-dev \
-                    libmumps-dev nodejs npm
+                    libmumps-dev nodejs
 
 # Julia dependencies
 # install Julia packages in /opt/julia instead of $HOME
